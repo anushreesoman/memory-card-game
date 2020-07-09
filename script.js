@@ -54,3 +54,12 @@ function resetBoard() {
   [cardFlipped, lockBoard] = [false, false];
   [firstCard, secondCard] = [null, null];
 }
+
+(function shuffle() {
+  cards.forEach(card => {
+    let posit = Math.floor(Math.random() *12);
+    card.style.order = posit;
+  })
+})();
+
+
