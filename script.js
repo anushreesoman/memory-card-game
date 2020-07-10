@@ -8,7 +8,8 @@ let firstCard, secondCard;
 let combosFound = 0;
 
 function flipCard() {
-    
+  if(this === firstCard) return; //prevents same card being clicked twice
+  
   if (lockBoard) return;
 
   this.classList.add("flip");
