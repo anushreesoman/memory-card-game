@@ -5,6 +5,7 @@ cards.forEach((card) => card.addEventListener("click", flipCard));
 let cardFlipped = false;
 let lockBoard = false;
 let firstCard, secondCard;
+let combosFound = 0;
 
 function flipCard() {
     
@@ -37,6 +38,12 @@ function disableCards() {
   //if cards match prevent them being clicked again
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
+
+  combosFound +=1;
+  
+  if (combosFound === 8){
+    winGame();
+  }
 }
 
 function unflipCards() {
@@ -55,11 +62,23 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
+function winGame(){
+  setTimeout(() => {
+    alert('You Win!');
+    cards.forEach(card => {card.classList.remove('flip'); card.addEventListener("click", flipCard)});
+    shuffle();
+  }, 1200);
+}
+
+function shuffle() {
   cards.forEach(card => {
     let posit = Math.floor(Math.random() *12);
     card.style.order = posit;
   })
+}
+
+(function loaded() {
+  shuffle();
 })();
 
 
